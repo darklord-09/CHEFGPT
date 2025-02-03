@@ -8,7 +8,7 @@ function DataFetcher() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await  fetch('http://localhost:3000/', {
+        const response = await  fetch('https://ogchefgptbackend.vercel.app/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ function DataFetcher() {
 
    const handleClick=(index)=>{
     
-      fetch('http://localhost:3000/delete', {
+      fetch('https://ogchefgptbackend.vercel.app/delete', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

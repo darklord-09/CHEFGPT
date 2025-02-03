@@ -19,7 +19,7 @@ function RecipeSaver() {
     }
 
     else{
-      fetch('http://localhost:3000/store', {
+      fetch('https://ogchefgptbackend.vercel.app/store', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

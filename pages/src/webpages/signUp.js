@@ -17,7 +17,7 @@ function SignUp() {
     }
 
     else{
-      fetch('http://localhost:3000/createUser', {
+      fetch('https://ogchefgptbackend.vercel.app/createUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

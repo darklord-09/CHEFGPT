@@ -17,7 +17,7 @@ function SignIn() {
     }
 
     else{
-      fetch('http://localhost:3000/findUser', {
+      fetch('https://ogchefgptbackend.vercel.app/findUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
