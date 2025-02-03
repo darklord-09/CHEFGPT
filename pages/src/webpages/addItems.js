@@ -18,7 +18,7 @@ function AddTextBoxButton() {
   };
 
    function handleSubmit(){
-    fetch('http://localhost:3000/ingredients', {
+    fetch('http://ogchefgptbackend.vercel.app/ingredients', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

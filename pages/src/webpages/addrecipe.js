@@ -10,7 +10,7 @@ function AddRecipe() {
 
 
   function handleSubmit(){
-    fetch('http://localhost:3000/recipe', {
+    fetch('http://ogchefgptbackend.vercel.app/recipe', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
