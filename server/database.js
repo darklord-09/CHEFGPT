@@ -6,8 +6,8 @@ dotenv.config();
 
 
 
-console.log(process.env.DATABASE_URL);
-const sql = neon(process.env.DATABASE_URL);
+
+const sql = neon(`${process.env.DATABASE_URL}`);
  
  async function testFunc(userid) {
   const result = await sql`SELECT index from recipes_table WHERE user_id=${userid}`
