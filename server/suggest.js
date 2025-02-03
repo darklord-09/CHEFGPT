@@ -1,6 +1,7 @@
-import {fetch} from 'node-fetch';
+
 
 export async function query(data) {
+    const { default: fetch } = await import('node-fetch'); 
     const response = await fetch(
         "https://api-inference.huggingface.co/models/google/gemma-2-2b-it",
         {
