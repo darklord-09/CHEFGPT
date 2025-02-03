@@ -10,7 +10,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
+app.get('/',(req,res)=>{
+  res.send('Hello');
+});
 
 app.post('/', (req,res)=>{
   let user_id=req.body.userid;
