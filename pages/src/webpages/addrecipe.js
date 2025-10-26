@@ -1,71 +1,73 @@
 import React, { useState } from 'react';
 import './addItems.css';
+
 function AddRecipe() {
   const [data, setData] = useState([]);
-    const [text, setText] = useState(''); // Initialize with an empty string
+  const [text, setText] = useState('');
+  const [loading, setLoading] = useState(false); // ✅ Added loading state
 
   const handleChange = (event) => {
-    setText(event.target.value); // Update text state on input change
+    setText(event.target.value);
   };
 
+  async function handleSubmit() {
+    setLoading(true); // ✅ Start loader
+    setData([]); // clear previous data
 
-  function handleSubmit(){
     fetch('https://ogchefgptbackend.vercel.app/recipe', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({name : text}),
+      body: JSON.stringify({ name: text }),
     })
-      .then(async(response) =>{ 
-        try{
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder(); // Important: Decode the stream
+      .then(async (response) => {
+        try {
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
 
-        let result = '';
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) {
-            break;
+          let result = '';
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            result += decoder.decode(value);
           }
-          result += decoder.decode(value); // Decode each chunk
+
+          const elementsArray = [];
+          let boldFlag = false;
+          let i = 0;
+
+          while (i < result.length) {
+            if (result[i] === '*' && result[i + 1] === ' ') {
+              elementsArray.push('->');
+              i++;
+            } else if (result[i] === '*' && result[i + 1] === '*') {
+              boldFlag = !boldFlag;
+              i += 2;
+            } else {
+              const text = result[i];
+              if (boldFlag) {
+                elementsArray.push(<strong>{text}</strong>);
+              } else {
+                elementsArray.push(text);
+              }
+              i++;
+            }
+          }
+
+          setData(elementsArray);
+        } catch (error) {
+          console.error('Error reading stream:', error);
+          setData(['Error loading data.']);
+        } finally {
+          setLoading(false); // ✅ Stop loader after completion
         }
-        
-        const elementsArray = [];
-  let boldFlag = false;
-  let i = 0;
-
-  while (i < result.length) {
-
-    if (result[i] === '*' && result[i + 1] === ' ') {
-      elementsArray.push("->"); // Or React.createElement('span', null, "->") if needed
-      i++;
-    } else if (result[i] === '*' && result[i + 1] === '*') {
-      boldFlag = !boldFlag;
-      i += 2;
-    } 
-    else {
-      const text = result[i]; // Or escape it if needed
-      if(boldFlag) {
-        elementsArray.push(<strong>{text}</strong>); //React.createElement('strong', null, text)
-      } else {
-        elementsArray.push(text); // React.createElement('span', null, text) if needed
-      }
-      i++;
-    }
-  }
-
-  setData(elementsArray);
-
-       // Set the decoded text in state
-      } catch (error) {
-        console.error('Error reading stream:', error);
-        setData('Error loading data.'); // Display an error message
-      }
-      
       })
-      .catch(error => console.error('Error:', error));
-  };
+      .catch((error) => {
+        console.error('Error:', error);
+        setLoading(false); // ✅ Stop loader even on error
+      });
+  }
 
   return (
     <div>
@@ -73,20 +75,32 @@ function AddRecipe() {
       <input
         type="text"
         id="dynamicText"
-        value={text} 
+        value={text}
         className="form-control"
-        onChange={handleChange} 
-        placeholder="Type here..." 
+        onChange={handleChange}
+        placeholder="Type here..."
       />
+      <br />
+      <button className="btn btn-dark" onClick={handleSubmit}>
+        Submit
+      </button>
 
-     <br/>
-<button className="btn btn-dark"  onClick={()=>{handleSubmit()}}>Submit</button>
-     <pre>
-           {data.map((element, index) => (
-                 <React.Fragment key={index}>{element}</React.Fragment>
-             ))}
-           </pre>
+      {/* ✅ Loader */}
+      {loading && (
+        <div className="loader-container">
+          <div className="spinner"></div>
+          <p>Generating your recipe...</p>
+        </div>
+      )}
 
+      {/* ✅ Only show data when not loading */}
+      {!loading && (
+        <pre>
+          {data.map((element, index) => (
+            <React.Fragment key={index}>{element}</React.Fragment>
+          ))}
+        </pre>
+      )}
     </div>
   );
 }
