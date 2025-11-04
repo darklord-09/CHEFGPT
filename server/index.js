@@ -11,8 +11,9 @@ app.use(cors({
     'https://ogchefgptclient.vercel.app',
     'https://ogchefgptclient-chirag-nandas-projects-2b2a0883.vercel.app'
   ],
-  credentials: true // if you're sending cookies or auth headers
+  methods: ["GET", "POST", "PUT", "DELETE"],
 }));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
