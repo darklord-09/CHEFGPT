@@ -3,7 +3,7 @@
 export async function query(data) {
     const { default: fetch } = await import('node-fetch'); 
     const response = await fetch(
-        "https://api-inference.huggingface.co/models/google/gemma-2-2b-it",
+        "https://router.huggingface.co/hf-inference/models/google/gemma-2-2b-it",
         {
             method: "POST",
             headers: {
