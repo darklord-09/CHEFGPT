@@ -9,16 +9,16 @@ function Dashboard() {
     const navigate = useNavigate();
      
     const handleLogout = () => {
-        localStorage.removeItem('userId');
-        localStorage.removeItem('userName');
-        localStorage.removeItem('isAuthenticated');
+        sessionStorage.removeItem('userId');
+        sessionStorage.removeItem('userName');
+        sessionStorage.removeItem('isAuthenticated');
         navigate('/signin'); // Redirect to sign-in page
     };
 
     // Check if user is authenticated. If not, redirect to sign in
     useEffect(() => {
       
-        if ('userId' in localStorage) {
+        if ('userId' in sessionStorage) {
           console.log('Ok');
         } else {
           navigate('/signin')

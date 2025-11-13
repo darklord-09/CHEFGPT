@@ -19,13 +19,13 @@ function RecipeSaver() {
     }
 
     else{
-      console.log({userid : localStorage.getItem('userId'),name : name, ingredients: ingredients, recipes: recipe});
+      console.log({userid : sessionStorage.getItem('userId'),name : name, ingredients: ingredients, recipes: recipe});
       fetch('https://ogchefgptbackend.vercel.app/store', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({userid : localStorage.getItem('userId'),name : name, ingredients: ingredients, recipes: recipe}),
+        body: JSON.stringify({userid : sessionStorage.getItem('userId'),name : name, ingredients: ingredients, recipes: recipe}),
       }).then((res)=>{
         
         return res.json()

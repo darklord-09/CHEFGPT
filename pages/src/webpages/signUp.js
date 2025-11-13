@@ -27,9 +27,9 @@ function SignUp() {
         .then((data) => {
           setLoading(false); // 👈 stop loader after fetch
           if (data.status === 202) {
-            localStorage.setItem('userId', data.user_id);
-            localStorage.setItem('userName', username);
-            localStorage.setItem('isAuthenticated', true);
+            sessionStorage.setItem('userId', data.user_id);
+            sessionStorage.setItem('userName', username);
+            sessionStorage.setItem('isAuthenticated', true);
             console.log('navigating to dashboard');
             navigate('/dashboard');
           } else {

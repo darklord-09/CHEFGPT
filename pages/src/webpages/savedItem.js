@@ -12,7 +12,7 @@ function DataFetcher() {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({userid : localStorage.getItem('userId')}),
+            body: JSON.stringify({userid : sessionStorage.getItem('userId')}),
           }) // Replace with your API endpoint
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -49,7 +49,7 @@ function DataFetcher() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({index: index,userid : localStorage.getItem('userId'),}),
+        body: JSON.stringify({index: index,userid : sessionStorage.getItem('userId'),}),
       }).then(res=>{
         return res.json();
       }).then((data)=>{
