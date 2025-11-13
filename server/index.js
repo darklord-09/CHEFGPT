@@ -6,15 +6,13 @@ import dotenv from 'dotenv';
 const app= express();
 
 dotenv.config();
-// app.use(cors({
-//   origin: [
-//     'https://ogchefgptclient.vercel.app',
-//     'https://ogchefgptclient-chirag-nandas-projects-2b2a0883.vercel.app'
-//   ],
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-// }));
+app.use(cors({
+  origin: [
+    'https://ogchefgptclient.vercel.app',
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+}));
 
-app.use(cors());
 
 
 app.use(express.json());
