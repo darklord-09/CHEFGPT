@@ -297,7 +297,7 @@ function SignUp() {
                       className="btn btn-chocolate btn-lg"
                       disabled={loading}
                     >
-                      {loading ? 'Signing Up...' : 'Create Account'}
+                      {loading ? 'Signing Up...' : 'Create'}
                     </button>
                     <button
                       type="button"
@@ -305,7 +305,7 @@ function SignUp() {
                       onClick={handleGoToSignIn}
                       disabled={loading}
                     >
-                      Back to Sign In
+                      Go Back
                     </button>
                   </div>
                 </form>
