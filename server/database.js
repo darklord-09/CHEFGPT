@@ -10,7 +10,7 @@ dotenv.config();
 const sql = neon(`${process.env.DATABASE_URL}`);
  
  async function testFunc(userid) {
-  const result = await sql`SELECT index from recipes_table WHERE user_id=${userid}`
+  const result = await sql`SELECT COUNT(index) from recipes_table WHERE user_id=${userid}`
   
   return result.length;
 };
@@ -24,7 +24,7 @@ async function saveToMyList(userid,name,ingredients, recipe){
   if(counter<5){
   
     
-  const result = await sql`INSERT INTO recipes_table (index,user_id,recipe_name,ingredients,recipe) VALUES (${counter+1},${userid},${name},${ingredients},${recipe})`;
+  const result = await sql`INSERT INTO recipes_table (user_id,recipe_name,ingredients,recipe) VALUES (${userid},${name},${ingredients},${recipe})`;
   console.log(result);
   let obj= {status : 202,message: "INSERTED"};
   return obj;
