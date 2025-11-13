@@ -33,8 +33,16 @@ app.post('/ingredients', (req,result)=>{
    let commandString="What dishes can we make with ";
    req.body.ingredients.forEach((item)=>{commandString+=item; commandString+=", "});
    commandString+="?";
-   query({"inputs" : commandString}).then(res=>{
-    result.send(res[0].generated_text)});
+   query({
+  "model": "google/gemma-2-2b-it",
+  "messages": [
+    {
+      "role": "user",
+      "content": commandString 
+    }
+  ]
+}).then(res=>{
+    result.send(res.message.content)});
 });
 
 app.post('/recipe', (req,result)=>{
@@ -43,7 +51,15 @@ app.post('/recipe', (req,result)=>{
    commandString+="?";
    console.log(req.body.name);
    
-  query({"inputs": commandString}).then(res=>{result.send(res[0].generated_text)});
+  query({
+  "model": "google/gemma-2-2b-it",
+  "messages": [
+    {
+      "role": "user",
+      "content": commandString 
+    }
+  ]
+}).then(res=>{result.send(res.message.content)});
 });
 
 app.post('/store',(req,result)=>{
