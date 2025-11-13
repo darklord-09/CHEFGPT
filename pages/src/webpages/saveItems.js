@@ -7,7 +7,7 @@ function RecipeSaver() {
   const [ingredients, setIngredients] = useState('');
   const [recipe, setRecipe]=useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +19,7 @@ function RecipeSaver() {
     }
 
     else{
+      console.log({userid : localStorage.getItem('userId'),name : name, ingredients: ingredients, recipes: recipe});
       fetch('https://ogchefgptbackend.vercel.app/store', {
         method: 'POST',
         headers: {

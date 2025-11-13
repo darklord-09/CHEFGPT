@@ -3,7 +3,7 @@ import AddTextBoxButton from './addItems';
 import AddRecipe from './addrecipe';
 import RecipeSaver from './saveItems';
 import DataFetcher from './savedItem';
-import { Navigate,useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 function Dashboard() {
     const navigate = useNavigate();
