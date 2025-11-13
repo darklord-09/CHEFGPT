@@ -290,24 +290,31 @@ function SignUp() {
                     </div>
                   </div>
 
-                  {/* Button layout */}
-                  <div className="d-grid gap-3 mt-4">
-                    <button
-                      type="submit"
-                      className="btn btn-chocolate btn-lg"
-                      disabled={loading}
-                    >
-                      {loading ? 'Signing Up...' : 'Create'}
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-outline-themed btn-lg"
-                      onClick={handleGoToSignIn}
-                      disabled={loading}
-                    >
-                      Go Back
-                    </button>
+                  {/* === CHANGED SECTION === */}
+                  {/* Replaced d-grid with Bootstrap's row/col for side-by-side buttons */}
+                  <div className="row g-3 mt-4">
+                    <div className="col">
+                      <button
+                        type="submit"
+                        className="btn btn-chocolate btn-lg w-100"
+                        disabled={loading}
+                      >
+                        {loading ? 'Signing Up...' : 'Create Account'}
+                      </button>
+                    </div>
+                    <div className="col">
+                      <button
+                        type="button"
+                        className="btn btn-outline-themed btn-lg w-100"
+                        onClick={handleGoToSignIn}
+                        disabled={loading}
+                      >
+                        Back to Sign In
+                      </button>
+                    </div>
                   </div>
+                  {/* === END OF CHANGED SECTION === */}
+
                 </form>
               )}
             </div>
