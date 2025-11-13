@@ -42,7 +42,7 @@ app.post('/ingredients', (req,result)=>{
     }
   ]
 }).then(res=>{
-    result.send(res)});
+    result.send(res.choices[0])});
 });
 
 app.post('/recipe', (req,result)=>{
@@ -59,7 +59,7 @@ app.post('/recipe', (req,result)=>{
       "content": commandString 
     }
   ]
-}).then(res=>{result.send(res)});
+}).then(res=>{result.send(res.choices[0])});
 });
 
 app.post('/store',(req,result)=>{
