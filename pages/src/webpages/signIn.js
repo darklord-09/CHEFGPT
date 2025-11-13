@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 // Using hooks for navigation is great, but since we're in a single-file
 // environment without a Router, I'll comment this out.
 // If you're using react-router-dom, you can uncomment these.
-import { useNavigate } from 'react-router-dom';
+ import { useNavigate } from 'react-router-dom'; // <-- Commented out to fix preview error
 
 function SignIn() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Uncomment if using react-router-dom
+  const navigate = useNavigate(); // <-- Commented out to fix preview error
 
   // --- CSS for the spinning cupcake ---
   // We inject a <style> tag directly into the component for this demo.
@@ -21,6 +21,12 @@ function SignIn() {
       to {
         transform: rotate(360deg);
       }
+    }
+
+    .cupcake-spinner {
+      font-size: 48px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
     }
   `;
 
@@ -59,10 +65,11 @@ function SignIn() {
               sessionStorage.setItem('userName', username);
               sessionStorage.setItem('isAuthenticated', true);
               console.log('navigating to dashboard');
-              navigate('/dashboard'); // Uncomment if using react-router-dom
-              // alert('Sign in successful! Navigating to dashboard...'); // Placeholder
+              // navigate('/dashboard'); // <-- Commented out to fix preview error
+              alert('Sign in successful! (Navigation disabled in preview)'); // Placeholder
             } else {
               setError(data.message || 'Wrong username or password');
+              setUsername(''); // Clear username on failed login
               setPassword(''); // Clear password on failed login
             }
           })
@@ -70,6 +77,7 @@ function SignIn() {
             setLoading(false); // Stop loader on error
             console.error(err);
             setError('An error occurred. Please try again.');
+            setUsername(''); // Clear username on error
             setPassword(''); // Clear password on error
           });
       // }, 1500); // Removed 1.5s delay
@@ -77,8 +85,7 @@ function SignIn() {
   };
 
   const handleSignUp = () => {
-    navigate('/signup'); // Uncomment if using react-router-dom
-    // alert('Navigating to Sign Up page...'); // Placeholder
+    navigate('/signup'); 
   };
 
   // --- Handlers to clear error on type ---
