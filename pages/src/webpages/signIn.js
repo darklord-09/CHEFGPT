@@ -26,6 +26,7 @@ function SignIn() {
         .then((res) => res.json())
         .then((data) => {
           setLoading(false); // 👈 stop loader
+          console.log(data.status);
           if (data.status === 202) {
             localStorage.setItem('userId', data.user_id);
             localStorage.setItem('userName', username);
