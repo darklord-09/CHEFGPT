@@ -290,8 +290,8 @@ function SignUp() {
                     </div>
                   </div>
 
-                  {/* === CHANGED SECTION === */}
-                  {/* Replaced d-grid with Bootstrap's row/col for side-by-side buttons */}
+                 <br/>
+                 <br/>
                   <div className="row g-3 mt-4">
                     <div className="col">
                       <button
