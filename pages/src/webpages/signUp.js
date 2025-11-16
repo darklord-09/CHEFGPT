@@ -290,8 +290,7 @@ function SignUp() {
                     </div>
                   </div>
 
-                 <br/>
-                 <br/>
+                
                   <div className="row g-3 mt-4">
                     <div className="col">
                       <button
@@ -302,6 +301,8 @@ function SignUp() {
                         {loading ? 'Signing Up...' : 'Create Account'}
                       </button>
                     </div>
+                    <br/>
+                    <br/>
                     <div className="col">
                       <button
                         type="button"
