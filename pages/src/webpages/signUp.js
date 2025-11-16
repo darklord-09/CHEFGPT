@@ -291,18 +291,17 @@ function SignUp() {
                   </div>
 
                 
-                  <div className="row g-3 mt-4">
+                  <div className="row gx-4 mt-4">
                     <div className="col">
                       <button
                         type="submit"
                         className="btn btn-chocolate btn-lg w-100"
                         disabled={loading}
                       >
-                        {loading ? 'Signing Up...' : 'Create Account'}
+                        {loading ? 'Signing Up...' : 'Create'}
                       </button>
                     </div>
-                    <br/>
-                    <br/>
+                    
                     <div className="col">
                       <button
                         type="button"
