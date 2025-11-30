@@ -58,7 +58,6 @@ The choice of SQL and PostgreSQL was driven by the need for:
 * Faster **Update** and **Delete** performance (critical for recipe management, especially with the 5-recipe limit).
 * Efficient **Joins** for fetching user-specific recipes (better read performance). 
 
-[Image of SQL JOIN types diagram]
 
 * **Efficient storage** for structured, relational data.
 
@@ -80,9 +79,7 @@ CREATE TABLE users_table (
     password VARCHAR(50) NOT NULL
 );
 
-
-
-**1. `recipes_table`**
+**2. `recipes_table`**
 
 | **Column** | **Data Type** |
 | `id` | `INT PRIMARY KEY` |
