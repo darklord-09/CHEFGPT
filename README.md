@@ -13,7 +13,7 @@ This project was instrumental in strengthening my skills in **React**, **Node.js
 * **AI Recipe Generation:** Uses the **HuggingFace API** to access an LLM client, generating recipe suggestions in a specific, structured format.
 * **Manual Recipe Adder:** Allows users to manually input and save their own recipes in the required format.
 * **Recipe Dashboard:** Shows saved recipes (limited to 5 per user).
-* **User Authentication:** Simple **Sign In** and **Register** features.
+* **User Authentication:** Simple **Sign In** and **Signup** features.
 * **Recipe Search Bar:** Functionality to search existing recipes by name via LLM suggestion.
 
 ---
