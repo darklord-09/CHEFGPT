@@ -11,10 +11,10 @@ This project was instrumental in strengthening my skills in **React**, **Node.js
 ## Key Features Implemented
 
 * **AI Recipe Generation:** Uses the **HuggingFace API** to access an LLM client, generating recipe suggestions in a specific, structured format.
-* **Manual Recipe Adder:** Allows users to manually input and save their own recipes.
-* **Recipe Dashboard:** Displays all saved recipes for the user.
+* **Manual Recipe Adder:** Allows users to manually input and save their own recipes in the required format.
+* **Recipe Dashboard:** Shows saved recipes (limited to 5 per user).
 * **User Authentication:** Simple **Sign In** and **Register** features.
-* **Recipe Search Bar:** Functionality to search existing recipes (limited implementation).
+* **Recipe Search Bar:** Functionality to search existing recipes by name via LLM suggestion.
 
 ---
 
@@ -28,20 +28,20 @@ The server handles routing and business logic for authentication and recipe mana
 
 #### Authentication Routes:
 
-| Endpoint | Functionality |
-| :--- | :--- |
-| `/auth/createuser` | Handles user registration. |
-| `/auth/login` | Handles user sign-in. |
+| Endpoint | Functionality | Purpose |
+| :--- | :--- | :--- |
+| `/Createuser` | **Sign Up** | Handles user registration. |
+| `/findUser` | **Sign In** | Handles user login/authentication. |
 
 #### Recipes Routes:
 
-| Endpoint | Functionality |
-| :--- | :--- |
-| `/recipes/add` | Adds a new recipe to the database. |
-| `/recipes/delete` | Deletes a specified recipe. |
-| `/recipes/modify` | Updates an existing recipe. |
-| `/recipes/generate` | Triggers the **GenAI** recipe suggestion generator. |
-| `/recipes/saved` | Displays saved recipes (Limited to 5 per user). |
+| Endpoint | Functionality | Purpose |
+| :--- | :--- | :--- |
+| `/store` | **Add Recipe** | Adds a manually input recipe to the database. |
+| `/delete` | **Delete Recipe** | Deletes a specified saved recipe. |
+| `/ingredients` | **AI Generation (Ingredients)** | For generating recipes from user-provided ingredients (LLM). |
+| `/recipe` | **AI Generation (By Name)** | For generating a recipe given a specific dish name (LLM). |
+| `/` | **Get Saved List** | Returns the list of saved recipes for the logged-in user. |
 
 ---
 
@@ -55,8 +55,11 @@ The server handles routing and business logic for authentication and recipe mana
 The choice of SQL and PostgreSQL was driven by the need for:
 
 * **Strict Format Enforcement** and Data Integrity.
-* Faster **Update** and **Delete** performance (critical for recipe management).
-* Efficient **Joins** for fetching user-specific recipes (better read performance).
+* Faster **Update** and **Delete** performance (critical for recipe management, especially with the 5-recipe limit).
+* Efficient **Joins** for fetching user-specific recipes (better read performance). 
+
+[Image of SQL JOIN types diagram]
+
 * **Efficient storage** for structured, relational data.
 
 #### Database Schema
@@ -67,7 +70,7 @@ The choice of SQL and PostgreSQL was driven by the need for:
 | :--- | :--- | :--- | :--- |
 | `user_id` | `INT` | `PRIMARY KEY` | Unique identifier for the user. |
 | `username` | `VARCHAR(50)` | `NOT NULL` | User's chosen username. |
-| `password` | `VARCHAR(50)` | `NOT NULL` | User's password. |
+| `password` | `VARCHAR(50)` | `NOT NULL` | User's password (hashed in a production environment). |
 
 **SQL Schema:**
 ```sql
