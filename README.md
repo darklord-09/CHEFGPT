@@ -70,7 +70,7 @@ The choice of SQL and PostgreSQL was driven by the need for:
 | :--- | :--- | :--- | :--- |
 | `user_id` | `INT` | `PRIMARY KEY` | Unique identifier for the user. |
 | `username` | `VARCHAR(50)` | `NOT NULL` | User's chosen username. |
-| `password` | `VARCHAR(50)` | `NOT NULL` | User's password (hashed in a production environment). |
+| `password` | `TEXT` | `NOT NULL` | User's password (hashed in a production environment). |
 
 **SQL Schema:**
 ```sql
