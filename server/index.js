@@ -46,7 +46,7 @@ app.post('/ingredients', (req,result)=>{
 app.post('/recipe', (req,result)=>{
   let commandString="How to make ";
    commandString+=req.body.name;
-   commandString+="?";
+   commandString+="? provide in the strict format containing name of the dish, ingredients and procedure only";
    console.log(req.body.name);
    
   query({
